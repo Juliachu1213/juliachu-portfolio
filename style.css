@@ -502,7 +502,6 @@ nav a:hover {
   transform: scale(1.05);
 }
 
-
 /* === Experiment & Results (交錯式區塊) === */
 .result-section {
   display: flex;
@@ -532,6 +531,24 @@ nav a:hover {
   font-size: 1.1rem;
   color: #3b3026;
   line-height: 1.8;
+}
+
+.result-block .photo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.result-block img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.result-block img:hover {
+  transform: scale(1.05);
 }
 
 .result-block .photo {

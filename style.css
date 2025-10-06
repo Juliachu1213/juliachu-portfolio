@@ -503,3 +503,51 @@ nav a:hover {
 }
 
 
+/* === Experiment & Results (交錯式區塊) === */
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 60px;
+  margin-top: 40px;
+}
+
+.result-block {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  flex-wrap: wrap;
+  animation: fadeInUp 1.2s ease forwards;
+}
+
+.result-block.left .text { order: 1; }
+.result-block.left .photo { order: 2; }
+
+.result-block.right .photo { order: 1; }
+.result-block.right .text { order: 2; }
+
+.result-block .text {
+  flex: 1;
+  min-width: 300px;
+  font-size: 1.1rem;
+  color: #3b3026;
+  line-height: 1.8;
+}
+
+.result-block .photo {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.result-block img {
+  width: 100%;
+  max-width: 500px;
+  border-radius: 15px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease;
+}
+
+.result-block img:hover {
+  transform: scale(1.05);
+}

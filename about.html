@@ -94,7 +94,21 @@
   </div>
 </section>
 
+<script>
+document.addEventListener("DOMContentLoaded", () => {
+  const items = document.querySelectorAll('.journey-item');
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+    });
+  }, { threshold: 0.2 });
 
+  items.forEach(item => {
+    item.style.animationPlayState = 'paused';
+    observer.observe(item);
+  });
+});
+</script>
 
 
 

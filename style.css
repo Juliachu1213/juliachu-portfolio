@@ -1,4 +1,4 @@
-/* === Global & Header === */
+ㄒ/* === Global & Header === */
 body {
   margin: 0;
   font-family: 'Open Sans', sans-serif;
@@ -155,7 +155,7 @@ nav a:hover {
   align-items: center;
   justify-content: center;
   gap: 80px;
-  padding: 140px 120px;
+  padding: 80px 80px 40px;;
   background-color: #f4ede5;
   color: #2d261f;
   flex-wrap: wrap;
@@ -236,9 +236,11 @@ nav a:hover {
 /* === My Journey Section === */
 .journey {
   background: radial-gradient(circle at top left, #f6f0e7, #e9dfd1);
-  padding: 100px 80px;
+  padding: 60px 80px 100px;  /* ✅ 上縮小成 60 */
   color: #2d261f;
+  margin-top: -20px;         /* ✅ 往上拉近一點 */
 }
+
 
 /* 手寫線條動畫 */
 .journey-title {

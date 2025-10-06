@@ -155,13 +155,12 @@ nav a:hover {
   align-items: center;
   justify-content: space-between;
   gap: 40px;
-  padding: 80px 80px 40px; /* 上 80 / 左右 80 / 下 40 */
+  padding: 80px 80px 40px;
   background: linear-gradient(180deg, #f4ede5 0%, #f5efe7 60%, #f3eadc 100%);
   color: #2d261f;
   flex-wrap: wrap;
-  animation: fadeInUp 1s ease forwards;
   background-size: 200% 200%;
-  animation: gradientFlow 10s ease infinite; /* ✅ 背景動畫 */
+  animation: fadeInUp 1s ease forwards, gradientFlow 10s ease infinite; /* ✅ 合併 */
 }
 
 .about-text {

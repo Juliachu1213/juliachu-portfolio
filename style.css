@@ -59,14 +59,22 @@ nav a:hover {
 /* Hero Section */
 .hero {
   text-align: center;
-  padding: 80px 20px;
+  padding: 120px 20px;
+  background-image: url('assets/beach_bg.jpg'); /* ✅ 放妳的背景圖檔路徑 */
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed; /* 可選，會有微動視差感 */
+  color: #2d261f;
 }
 
 .hero h2 {
   font-family: 'Playfair Display', serif;
-  font-size: 2.5rem;
+  font-size: 2.8rem;
   margin-bottom: 25px;
+  letter-spacing: 1px;
+  text-shadow: 0px 2px 6px rgba(0, 0, 0, 0.2);
 }
+
 
 .profile-photo img {
   width: 200px;

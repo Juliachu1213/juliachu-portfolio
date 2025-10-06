@@ -221,11 +221,7 @@ nav a:hover {
 .about-text, .about-photo {
   opacity: 0;
   transform: translateY(40px);
-  animation: fadeUp 1.2s ease forwards;
-}
-
-.about-photo {
-  animation-delay: 0.2s;
+  animation: fadeUpAbout 1.2s ease forwards;
 }
 
 @keyframes fadeUpAbout {
@@ -234,6 +230,7 @@ nav a:hover {
     transform: translateY(0);
   }
 }
+
 
 
 

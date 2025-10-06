@@ -151,17 +151,30 @@ nav a:hover {
 /* === About Section (New!) === */
 /* === About Section (Elegant Squarespace Style) === */
 .about {
+  position: relative;         /* 為偽元素定位 */
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 40px;
   padding: 80px 80px 40px;
-  background: linear-gradient(180deg, #f4ede5 0%, #f5efe7 60%, #f3eadc 100%);
   color: #2d261f;
   flex-wrap: wrap;
-  background-size: 200% 200%;
-  animation: fadeInUp 1s ease forwards, gradientFlow 10s ease infinite; /* ✅ 合併 */
+  z-index: 1;                 /* 內容層在上 */
+  overflow: hidden;           /* 防止背景溢出 */
+  animation: fadeInUp 1s ease forwards; /* ✅ 只保留淡入動畫 */
 }
+
+/* ✅ 新增背景動畫層 */
+.about::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, #f4ede5 0%, #f5efe7 60%, #f3eadc 100%);
+  background-size: 200% 200%;
+  animation: gradientFlow 10s ease infinite;
+  z-index: -1; /* 背景在底層 */
+}
+
 
 .about-text {
   flex: 1.1;

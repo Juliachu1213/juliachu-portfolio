@@ -72,9 +72,11 @@ nav a:hover {
   width: 200px;
   height: 200px;
   border-radius: 50%;
+  object-fit: cover; /* ✅ 防止圖片被壓扁 */
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
+
 
 .profile-photo img:hover {
   transform: scale(1.05);

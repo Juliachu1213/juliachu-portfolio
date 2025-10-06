@@ -235,33 +235,20 @@ nav a:hover {
 
 /* === My Journey Section === */
 .journey {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 60px;
-  padding: 120px 80px;
   background: radial-gradient(circle at top left, #f6f0e7, #e9dfd1);
+  padding: 100px 80px;
   color: #2d261f;
-  flex-wrap: wrap;
 }
 
-.journey-text {
-  flex: 1;
-  min-width: 300px;
-  opacity: 0;
-  transform: translateY(30px);
-  animation: fadeInUp 1.2s ease forwards;
-  animation-delay: 0.3s;
-}
-
-/* ✨ 手寫線條動畫 */
+/* 手寫線條動畫 */
 .journey-title {
-  font-family: 'Playfair Display', serif;
+  font-family: "Playfair Display", serif;
   font-size: 4rem;
   font-style: italic;
   position: relative;
+  margin-bottom: 100px;
   display: inline-block;
-  margin-bottom: 50px;
+  animation: fadeInUp 1s ease forwards;
 }
 
 .journey-title::after {
@@ -272,9 +259,9 @@ nav a:hover {
   width: 0%;
   height: 6px;
   background: #3b3026;
-  border-radius: 4px;
+  border-radius: 3px;
   animation: drawLine 1.2s ease forwards;
-  animation-delay: 0.5s;
+  animation-delay: 0.4s;
 }
 
 @keyframes drawLine {
@@ -286,49 +273,67 @@ nav a:hover {
   }
 }
 
-/* 內容樣式 */
-.experience h3 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
-  margin-bottom: 8px;
+/* 每段經歷 */
+.journey-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 60px;
+  margin-bottom: 120px;
+  flex-wrap: wrap;
+  opacity: 0;
+  transform: translateY(40px);
+  animation: fadeInUp 1.2s ease forwards;
 }
 
-.experience .date {
-  color: #6b5e52;
-  margin-bottom: 20px;
+.journey-item.right {
+  flex-direction: row-reverse;
+}
+
+.journey-text {
+  flex: 1;
+  min-width: 320px;
+}
+
+.journey-text h3 {
+  font-family: "Playfair Display", serif;
+  font-size: 1.9rem;
+  margin-bottom: 10px;
+}
+
+.journey-text .date {
   font-style: italic;
+  color: #6c5b4c;
+  margin-bottom: 20px;
 }
 
-.experience .desc {
+.journey-text .desc {
   max-width: 600px;
+  line-height: 1.8;
   font-size: 1rem;
-  line-height: 1.7;
   color: #3b3026;
 }
 
-/* 照片 */
 .journey-photo {
   flex: 1;
   display: flex;
   justify-content: center;
-  animation: fadeInUp 1.4s ease forwards;
-  animation-delay: 0.6s;
 }
 
 .journey-photo img {
   width: 90%;
-  max-width: 650px;
-  border-radius: 6px;
-  box-shadow: 0 6px 25px rgba(0, 0, 0, 0.2);
+  max-width: 600px;
+  border-radius: 8px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.25);
   transition: transform 0.4s ease, box-shadow 0.4s ease;
 }
 
 .journey-photo img:hover {
   transform: scale(1.03);
-  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.3);
 }
 
-/* 共用動畫 */
+/* 共用淡入動畫 */
 @keyframes fadeInUp {
   from {
     opacity: 0;

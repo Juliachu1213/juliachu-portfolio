@@ -153,12 +153,15 @@ nav a:hover {
 .about {
   display: flex;
   align-items: center;
-  justify-content: center;
-  gap: 80px;
-  padding: 80px 80px 40px;;
-  background-color: #f4ede5;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 80px 80px 40px; /* 上 80 / 左右 80 / 下 40 */
+  background: linear-gradient(180deg, #f4ede5 0%, #f5efe7 60%, #f3eadc 100%);
   color: #2d261f;
   flex-wrap: wrap;
+  animation: fadeInUp 1s ease forwards;
+  background-size: 200% 200%;
+  animation: gradientFlow 10s ease infinite; /* ✅ 背景動畫 */
 }
 
 .about-text {
@@ -235,10 +238,12 @@ nav a:hover {
 
 /* === My Journey Section === */
 .journey {
-  background: radial-gradient(circle at top left, #f6f0e7, #e9dfd1);
-  padding: 60px 80px 100px;  /* ✅ 上縮小成 60 */
+  background: linear-gradient(180deg, #f3eadc 0%, #efe2d1 70%, #e9dfd1 100%);
+  padding: 60px 80px 100px; /* 上 60 / 左右 80 / 下 100 */
   color: #2d261f;
-  margin-top: -20px;         /* ✅ 往上拉近一點 */
+  margin-top: -20px; /* ✅ 往上微靠近 */
+  background-size: 200% 200%;
+  animation: gradientFlow 12s ease infinite; /* ✅ 背景緩慢流動 */
 }
 
 
@@ -336,13 +341,15 @@ nav a:hover {
 }
 
 /* 共用淡入動畫 */
-@keyframes fadeInUp {
-  from {
-    opacity: 0;
-    transform: translateY(40px);
+@keyframes gradientFlow {
+  0% {
+    background-position: 0% 50%;
   }
-  to {
-    opacity: 1;
-    transform: translateY(0);
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
   }
 }
+

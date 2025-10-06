@@ -343,15 +343,15 @@ scroll-margin-top: 100px;
 }
 
 /* 共用淡入動畫 */
-@keyframes gradientFlow {
+@keyframes fadeInUp {
   0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
+    opacity: 0;
+    transform: translateY(40px);
   }
   100% {
-    background-position: 0% 50%;
+    opacity: 1;
+    transform: translateY(0);
   }
 }
+
 

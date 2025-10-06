@@ -234,7 +234,7 @@ nav a:hover {
     transform: translateY(0);
   }
 }
-scroll-margin-top: 100px;
+
 
 
 /* === My Journey Section === */
@@ -245,6 +245,7 @@ scroll-margin-top: 100px;
   margin-top: -30px; /* ✅ 往上微靠近 */
   background-size: 200% 200%;
   animation: gradientFlow 12s ease infinite; /* ✅ 背景緩慢流動 */
+  scroll-margin-top: 100px;
 }
 
 
@@ -293,7 +294,9 @@ scroll-margin-top: 100px;
   opacity: 0;
   transform: translateY(40px);
   animation: fadeInUp 1.2s ease forwards;
+  animation-play-state: paused; /* ✅ 新增這行 */
 }
+
 
 .journey-item.right {
   flex-direction: row-reverse;

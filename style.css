@@ -79,7 +79,7 @@ nav a:hover {
 .desc {
   opacity: 0;
   transform: translateY(30px);
-  animation: fadeUp 1.2s ease forwards;
+  animation: fadeUpHero 1.2s ease forwards;
 }
 
 .hero h2 {
@@ -140,7 +140,7 @@ nav a:hover {
 }
 
 /* === 動畫效果 === */
-@keyframes fadeUp {
+@keyframes fadeUpHero {
   to {
     opacity: 1;
     transform: translateY(0);
@@ -228,12 +228,13 @@ nav a:hover {
   animation-delay: 0.2s;
 }
 
-@keyframes fadeUp {
+@keyframes fadeUpAbout {
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
+scroll-margin-top: 100px;
 
 
 /* === My Journey Section === */
@@ -259,6 +260,7 @@ nav a:hover {
 }
 
 .journey-title::after {
+   animation-delay: 0.6s;
   content: "";
   position: absolute;
   left: 0;

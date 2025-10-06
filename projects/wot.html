@@ -1,1 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Home Gateways - Julia Chu</title>
+    <link rel="stylesheet" href="style.css" />
+  </head>
+
+  <body>
+    <header>
+      <h1>Smart Home Gateways Based on W3C Web of Things Architecture</h1>
+    </header>
+
+    <section class="project-detail">
+      <h2>Overview</h2>
+      <p>
+        This thesis addresses the limitations of the traditional CWMP (CPE WAN Management Protocol) used in smart home gateways,
+        which suffers from SOAP overhead, inefficient event notifications, and weak security mechanisms.
+      </p>
+      <p>
+        By introducing the Web of Things (WoT) architecture, the research redefines CWMP’s SOAP-based RPC methods into RESTful APIs,
+        improving interoperability and system modularity. Furthermore, WebSocket and Webhook are implemented to replace the CWMP Inform mechanism,
+        significantly enhancing real-time event communication.
+      </p>
+
+      <h2>Objectives</h2>
+      <ul>
+        <li>Enhance interoperability through RESTful API-based method mapping following WoT standards.</li>
+        <li>Improve event notification performance via WebSocket and Webhook.</li>
+        <li>Strengthen authentication and authorization using OAuth 2.0 and JWT.</li>
+      </ul>
+
+      <h2>System Design & Implementation</h2>
+      <p>
+        The proposed WoT–CWMP architecture integrates multiple key technologies:
+      </p>
+      <ul>
+        <li><strong>Thing Description (TD):</strong> Defines device and service resources in JSON-LD format for unified access.</li>
+        <li><strong>OAuth 2.0 & JWT:</strong> Enables secure user authentication and resource authorization.</li>
+        <li><strong>Database Layer (PostgreSQL):</strong> Stores device configurations, client credentials, and event logs.</li>
+        <li><strong>Spring Boot Framework:</strong> Implements WoT scripting logic in Java, re-architecting the CWMP workflow.</li>
+        <li><strong>API Testing:</strong> Conducted using Postman with GitHub OAuth integration for validation.</li>
+      </ul>
+
+      <h2>Experiment & Results</h2>
+      <ul>
+        <li>30% reduction in event notification latency using WebSocket/Webhook.</li>
+        <li>Higher stability under 5,000+ concurrent requests through load testing.</li>
+        <li>Improved maintainability and scalability from modular RESTful interfaces.</li>
+      </ul>
+      <div class="photos">
+        <img src="assets/result_latency.jpg" alt="Latency Comparison" />
+        <img src="assets/result_stability.jpg" alt="System Stability" />
+        <img src="assets/result_scalability.jpg" alt="Scalability Chart" />
+      </div>
+
+      <h2>Conclusion</h2>
+      <p>
+        This thesis proposes a secure and efficient smart home gateway management system based on the Web of Things framework.
+        By integrating RESTful APIs, OAuth 2.0, and JWT, the system achieves better interoperability, reduced latency, and stronger security,
+        providing a feasible reference model for next-generation IoT gateway architectures.
+      </p>
+    </section>
+  </body>
+</html>
 

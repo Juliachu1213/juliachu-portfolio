@@ -241,7 +241,7 @@ nav a:hover {
   background: linear-gradient(180deg, #f3eadc 0%, #efe2d1 70%, #e9dfd1 100%);
   padding: 60px 80px 100px; /* 上 60 / 左右 80 / 下 100 */
   color: #2d261f;
-  margin-top: -20px; /* ✅ 往上微靠近 */
+  margin-top: -30px; /* ✅ 往上微靠近 */
   background-size: 200% 200%;
   animation: gradientFlow 12s ease infinite; /* ✅ 背景緩慢流動 */
 }

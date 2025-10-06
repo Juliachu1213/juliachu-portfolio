@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>About - Julia Chu</title>
-    <link rel="stylesheet" href="style.css"> <!-- ✅ 這行最關鍵 -->
+    <link rel="stylesheet" href="style.css" />
   </head>
 
   <body>
@@ -21,7 +21,10 @@
       </nav>
     </header>
 
+    <!-- ✅ 新增背景層 (這一行最關鍵，讓背景動畫在底層跑) -->
     <section class="about">
+      <div class="about-bg"></div>
+
       <div class="about-text">
         <h2>About Me</h2>
         <p class="intro">
@@ -42,73 +45,76 @@
       <div class="about-photo">
         <img src="assets/about_graduation.jpg" alt="Julia Chu" />
       </div>
-    
     </section>
 
-  <section class="journey">
+    <section class="journey">
       <h2 class="journey-title">My Journey</h2>
-    
+
       <!-- Dell -->
       <div class="journey-item left">
         <div class="journey-text">
           <h3>Internship at @Dell Technologies</h3>
           <p class="date">Jun 2025 – Aug 2025</p>
           <p class="desc">
-            Developed an automated LCD defect detection system on Raspberry Pi using <strong>3D CNN</strong>, 
-            integrating hardware, API, and model optimization to improve inspection efficiency and accuracy.
+            Developed an automated LCD defect detection system on Raspberry Pi using
+            <strong>3D CNN</strong>, integrating hardware, API, and model optimization to improve inspection
+            efficiency and accuracy.
           </p>
         </div>
         <div class="journey-photo">
-          <img src="assets/dell_intern.jpg" alt="Dell Technologies Internship">
+          <img src="assets/dell_intern.jpg" alt="Dell Technologies Internship" />
         </div>
       </div>
-    
+
       <!-- Sunbird -->
       <div class="journey-item right">
         <div class="journey-photo">
-          <img src="assets/sunbird_intern.jpg" alt="Sunbird Internship">
+          <img src="assets/sunbird_intern.jpg" alt="Sunbird Internship" />
         </div>
         <div class="journey-text">
           <h3>Internship at @Sunbird Software</h3>
           <p class="date">Sep 2022 – Aug 2023</p>
           <p class="desc">
-            Enhanced backend reliability by expanding automated testing and implementing <strong>CI/CD pipelines</strong> 
-            with GitHub Actions and Kubernetes.
+            Enhanced backend reliability by expanding automated testing and implementing
+            <strong>CI/CD pipelines</strong> with GitHub Actions and Kubernetes.
           </p>
         </div>
       </div>
-    
+
       <!-- Bank Sinopac -->
       <div class="journey-item left">
         <div class="journey-text">
           <h3>Internship at @Bank Sinopac</h3>
           <p class="date">Feb 2022 – Jul 2022</p>
           <p class="desc">
-            Developed real-time customer segmentation pipelines using ML models and automated ETL with Apache Airflow, 
-            improving recommendation accuracy and enabling data-driven insights.
+            Developed real-time customer segmentation pipelines using ML models and automated ETL with Apache
+            Airflow, improving recommendation accuracy and enabling data-driven insights.
           </p>
         </div>
         <div class="journey-photo">
-          <img src="assets/sinopac_intern.jpg" alt="Bank Sinopac Internship">
+          <img src="assets/sinopac_intern.jpg" alt="Bank Sinopac Internship" />
         </div>
       </div>
     </section>
-    
+
     <script>
-    document.addEventListener("DOMContentLoaded", () => {
-      const items = document.querySelectorAll('.journey-item');
-      const observer = new IntersectionObserver(entries => {
-        entries.forEach(entry => {
-          if (entry.isIntersecting) entry.target.style.animationPlayState = 'running';
+      document.addEventListener("DOMContentLoaded", () => {
+        const items = document.querySelectorAll(".journey-item");
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting)
+                entry.target.style.animationPlayState = "running";
+            });
+          },
+          { threshold: 0.2 }
+        );
+
+        items.forEach((item) => {
+          item.style.animationPlayState = "paused";
+          observer.observe(item);
         });
-      }, { threshold: 0.2 });
-    
-      items.forEach(item => {
-        item.style.animationPlayState = 'paused';
-        observer.observe(item);
       });
-    });
     </script>
- 
   </body>
 </html>

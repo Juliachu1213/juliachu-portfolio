@@ -5,10 +5,176 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Smart Home Gateways | Julia Chu</title>
   <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* === Background Animation === */
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: #2d261f;
+      background: linear-gradient(135deg, #f7f1e9, #e9dfd1, #f4eadd);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* === Header === */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #3b3026;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3b3026;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover { color: #a17f45; }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #3b3026;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    /* === Main Container === */
+    .project-detail {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #3b3026;
+      border-left: 4px solid #a17f45;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    ul { margin-left: 20px; }
+
+    /* === Result Blocks (Alternating Layout) === */
+    .result-section {
+      display: flex;
+      flex-direction: column;
+      gap: 50px;
+      margin-top: 40px;
+    }
+
+    .result-block {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 30px;
+    }
+
+    .result-block.left .photo { order: 2; }
+    .result-block.left .text { order: 1; }
+
+    .result-block.right .photo { order: 1; }
+    .result-block.right .text { order: 2; }
+
+    .result-block img {
+      width: 100%;
+      max-width: 420px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .result-block img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    }
+
+    .result-block .text {
+      flex: 1 1 45%;
+      min-width: 300px;
+    }
+
+    .photo {
+      flex: 1 1 45%;
+      text-align: center;
+    }
+
+    /* === Buttons === */
+    .buttons {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .learn-more {
+      display: inline-block;
+      background-color: #2d261f;
+      color: white;
+      padding: 12px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .learn-more:hover {
+      background-color: #a17f45;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
 </head>
 
 <body>
-  <!-- ✅ 導覽列 -->
   <header>
     <h1>Julia's Personal Website</h1>
     <nav>
@@ -22,26 +188,20 @@
     </nav>
   </header>
 
-  <!-- ✅ 頁面內容 -->
   <div class="project-detail">
-    <h1 style="text-align:center; font-family:'Playfair Display', serif; font-size:2.5rem; margin-bottom:10px;">
-      Smart Home Gateways Based on W3C Web of Things Architecture
-    </h1>
+    <h1>Smart Home Gateways Based on W3C Web of Things Architecture</h1>
     <p style="text-align:center; font-style:italic; color:#6b5a4a; margin-bottom:40px;">
       Master’s Thesis @ National Chengchi University (Advisor: Prof. Chun-Fung Liao)
     </p>
 
     <h2>Introduction</h2>
     <p>
-      This thesis addresses the limitations of the traditional CWMP (CPE WAN Management Protocol)
-      used in smart home gateways, which suffers from SOAP overhead, inefficient event notifications,
-      and weak security mechanisms.
-    </p>
-    <p>
-      By introducing the <strong> Web of Things (WoT)</strong>strong> architecture, the research redefines CWMP’s SOAP-based
-      RPC methods into <strong>RESTful APIs</strong>strong>, improving interoperability and system modularity. Furthermore,
+      This thesis addresses the limitations of the traditional CWMP (CPE WAN Management Protocol),
+      which suffers from SOAP overhead, inefficient event notifications, and weak security mechanisms.
+      By introducing the <strong>Web of Things (WoT)</strong> architecture, the research redefines CWMP’s SOAP-based
+      RPC methods into <strong>RESTful APIs</strong>, improving interoperability and system modularity.
       WebSocket and Webhook are implemented to replace the CWMP Inform mechanism, significantly
-      enhancing real-time event communication.
+      enhancing real-time communication.
     </p>
 
     <h2>Objectives</h2>
@@ -61,53 +221,63 @@
     </ul>
 
     <h2>Experiment & Results</h2>
-
-    <!-- ✅ 交錯式圖片區塊 -->
     <div class="result-section">
       <div class="result-block left">
         <div class="text">
-          <p><strong>System Performance under Different CPE Loads</strong> </p>
-          <p>The test measured ACS response time with 10–100 CPEs. The original CWMP’s latency rose sharply from 5 ms to 75 ms due to SOAP overhead, while the WoT-based CWMP stayed around 40 ms at 100 CPEs, showing much better efficiency and scalability.
-</p>
+          <p><strong>System Performance under Different CPE Loads</strong></p>
+          <p>
+            The test measured ACS response time with 10–100 CPEs. The original CWMP’s latency rose sharply 
+            from 5 ms to 75 ms due to SOAP overhead, while the WoT-based CWMP stayed around 40 ms at 100 CPEs, 
+            showing much better efficiency and scalability.
+          </p>
         </div>
         <div class="photo">
-          <img src="../assets/result_latency.jpg" alt="Latency Comparison" />
+          <img src="../assets/result_latency.jpg" alt="Latency Comparison">
         </div>
       </div>
 
       <div class="result-block right">
         <div class="photo">
-          <img src="../assets/result_stability.jpg" alt="System Stability" />
+          <img src="../assets/result_stability.jpg" alt="System Stability">
         </div>
         <div class="text">
           <p><strong>Data Traffic under Different DU Update Requests</strong></p>
-<p>As DU update requests increased from 10 to 100, the original CWMP’s data usage rose steeply from 6 KB to 60 KB, while the WoT-based CWMP grew more slowly—from 4 KB to 45 KB—cutting traffic by about 25% and improving efficiency in large-scale updates.</p>
+          <p>
+            As DU update requests increased from 10 to 100, the original CWMP’s data usage rose steeply from 6 KB to 60 KB,
+            while the WoT-based CWMP grew more slowly—from 4 KB to 45 KB—cutting traffic by about 25% and improving efficiency 
+            in large-scale updates.
+          </p>
         </div>
       </div>
 
       <div class="result-block left">
         <div class="text">
           <p><strong>Event Notification Latency under Different Subscriber–Publisher Ratios</strong></p>
-          <p>Compares three event-notification mechanisms—CWMP Inform, Webhook, and WebSocket—using VALUE_CHANGE events to simulate IoT parameter updates. As the subscriber-to-publisher ratio increased from 1:1 to 1000:1, CWMP’s latency rose steeply from 100 ms to 350 ms due to SOAP overhead. Webhook performed better, reaching about 200 ms at 1000:1, cutting delay by over 40%. WebSocket consistently achieved the lowest latency—below 100 ms even under heavy load—thanks to its persistent connection design.</p>
+          <p>
+            Compares three event-notification mechanisms—CWMP Inform, Webhook, and WebSocket—using VALUE_CHANGE events to 
+            simulate IoT parameter updates. As the subscriber-to-publisher ratio increased from 1:1 to 1000:1, CWMP’s latency 
+            rose steeply from 100 ms to 350 ms due to SOAP overhead. Webhook performed better, reaching about 200 ms at 1000:1, 
+            cutting delay by over 40%. WebSocket consistently achieved the lowest latency—below 100 ms even under heavy load—thanks 
+            to its persistent connection design.
+          </p>
         </div>
         <div class="photo">
-          <img src="../assets/result_scalability.jpg" alt="Scalability Results" />
+          <img src="../assets/result_scalability.jpg" alt="Scalability Results">
         </div>
       </div>
     </div>
 
     <h2>Conclusion</h2>
     <p>
-      This thesis proposes a secure and efficient smart home gateway management system based on the
-      Web of Things framework. By integrating RESTful APIs, OAuth 2.0, and JWT, the system achieves
-      better interoperability, reduced latency, and stronger security, providing a feasible reference
-      model for next-generation IoT gateway architectures.
+      This thesis proposes a secure and efficient smart home gateway management system based on the Web of Things framework.
+      By integrating RESTful APIs, OAuth 2.0, and JWT, the system achieves better interoperability, reduced latency, and 
+      stronger security, providing a feasible reference model for next-generation IoT gateway architectures.
     </p>
 
-    <!-- ✅ 按鈕區 -->
-    <div style="text-align:center; margin-top:50px;">
+    <div class="buttons">
       <a href="../projects.html" class="learn-more">← Back to Projects</a>
-      <a href="https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22113NCCU5394026%22.&searchmode=basic" target="_blank" class="learn-more" style="margin-left:20px;">🔗 Full thesis to be released in 2028</a>
+      <a href="https://ndltd.ncl.edu.tw/cgi-bin/gs32/gsweb.cgi?o=dnclcdr&s=id=%22113NCCU5394026%22.&searchmode=basic" 
+         target="_blank" class="learn-more">🔗 Full thesis to be released in 2028</a>
     </div>
   </div>
 </body>

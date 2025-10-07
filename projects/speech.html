@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Speech Emotion Recognition | Julia Chu</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: #2d261f;
+      background: linear-gradient(135deg, #f7f1e9, #e9dfd1, #f4eadd);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #3b3026;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3b3026;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover { color: #a17f45; }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #3b3026;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    .project-detail {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #3b3026;
+      border-left: 4px solid #a17f45;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 70%;
+      margin: 1rem auto;
+      border-collapse: collapse;
+      font-size: 0.95rem;
+      text-align: center;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    thead {
+      background-color: #f4f6f8;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .image-block img {
+      width: 80%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-block img:hover { transform: scale(1.03); }
+
+    .citation {
+      font-style: italic;
+      font-size: 0.95rem;
+      color: #5a4b3c;
+      background: #f9f7f4;
+      border-left: 4px solid #a17f45;
+      padding: 12px 16px;
+      margin: 30px 0;
+      border-radius: 6px;
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .learn-more {
+      display: inline-block;
+      background-color: #2d261f;
+      color: white;
+      padding: 12px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .learn-more:hover {
+      background-color: #a17f45;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html" style="border-bottom: 2px solid #3b3026;">Projects</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="project-detail">
+    <h1>🎤 Speech Emotion Recognition Based on CNN+LSTM Model</h1>
+    <p style="text-align:center; font-style:italic; color:#6b5a4a;">
+      The 33rd Conference on Computational Linguistics and Speech Processing (ROCLING 2021)<br>
+      Taoyuan, Taiwan · October 15–16, 2021<br>
+      Organized by the Association for Computational Linguistics and Chinese Language Processing (ACLCLP)
+    </p>
+
+    <p style="text-align:center; margin-bottom:40px;">
+      <strong>Authors:</strong> Wei Mou¹, Pei-Hsuan Shen¹, Chu-Yun Chu¹, Yu-Cheng Chiu¹, Tsung-Hsien Yang², Ming-Hsiang Su¹<br>
+      ¹Soochow University, Taiwan · ²Telecommunication Laboratories, Chunghwa Telecom Co. Ltd.
+    </p>
+
+    <h2>1. Introduction</h2>
+    <p>
+      With the growing popularity of intelligent dialogue assistants such as Siri and Alexa, 
+      Speech Emotion Recognition (SER) has become a key component of natural human–computer interaction. 
+      This study proposes a deep learning-based framework combining Convolutional Neural Networks (CNN) 
+      and Long Short-Term Memory (LSTM) to automatically extract and model emotional features from speech. 
+      The CNN captures local acoustic representations, while the LSTM learns temporal dependencies across frames.
+    </p>
+
+    <h2>2. Dataset</h2>
+    <p>
+      The experiments used the <strong>EMO-DB dataset</strong>, a German emotional speech corpus recorded by 10 professional actors (5 male, 5 female) 
+      simulating seven emotions: neutral, anger, fear, joy, sadness, disgust, and boredom. 
+      Each sample was normalized, segmented, and zero-padded to 16,000 samples for uniform model input.
+    </p>
+
+    <h2>3. Methodology</h2>
+    <p>
+      The proposed model integrates a <strong>1D CNN</strong> for local feature extraction with a <strong>single-layer LSTM</strong> 
+      for temporal modeling, followed by a fully connected classification layer.
+    </p>
+    <ul>
+      <li><strong>CNN Module:</strong> 1D convolutional + max-pooling layers with ELU activation for robust feature learning.</li>
+      <li><strong>LSTM Module:</strong> Models temporal dependencies using gating mechanisms and tanh activation with SGD optimizer.</li>
+    </ul>
+
+
+    <h2>4. Experimental Setup</h2>
+    <p>
+      Data split: 64% training, 20% testing, 16% validation.  
+      Normalization via RMS scaling, early stopping, and ModelCheckpoint were used to prevent overfitting.  
+      Each audio file was segmented into fixed 16k-sample frames for model training.
+    </p>
+
+    <h2>5. Results and Discussion</h2>
+    <p>
+      The proposed CNN+LSTM model significantly outperformed individual CNN, LSTM, and NN baselines:
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>7-class Accuracy</th>
+          <th>4-class Accuracy</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>NN</td><td>53.30%</td><td>77.90%</td></tr>
+        <tr><td>CNN</td><td>45.80%</td><td>–</td></tr>
+        <tr><td>LSTM</td><td>50.50%</td><td>–</td></tr>
+        <tr style="font-weight:bold; background-color:#f9fafb;">
+          <td>CNN + LSTM</td><td>57.83%</td><td>83.00%</td>
+        </tr>
+      </tbody>
+    </table>
+
+
+    <p>
+      The CNN+LSTM hybrid model effectively captured both local acoustic features and temporal emotional dependencies, 
+      achieving the best performance across 7-class and 4-class configurations. 
+      The 4-class subset achieved higher accuracy due to clearer emotion separability.
+    </p>
+
+    <h2>6. Conclusion</h2>
+    <p>
+      This research demonstrates the effectiveness of combining convolutional and recurrent architectures for emotion recognition from speech. 
+      The CNN+LSTM model achieved superior results over traditional neural networks. 
+      Future work includes dataset expansion and advanced preprocessing using Mel-spectrogram and Fourier analysis.
+    </p>
+
+    <h2>7. Citation</h2>
+    <div class="citation">
+      Wei Mou, Pei-Hsuan Shen, Chu-Yun Chu, Yu-Cheng Chiu, Tsung-Hsien Yang, and Ming-Hsiang Su.  
+      “Speech Emotion Recognition Based on CNN+LSTM Model.”  
+      In <em>The 33rd Conference on Computational Linguistics and Speech Processing (ROCLING 2021)</em>,  
+      Taoyuan, Taiwan, October 15–16, 2021.
+    </div>
+
+    <div class="buttons">
+      <a href="../projects.html" class="learn-more">← Back to Projects</a>
+      <a href="https://aclanthology.org/volumes/2021.rocling-1.6/" target="_blank" class="learn-more">🌐 Conference Website</a>
+      <a href="https://github.com/Juliachu1213/CNN_LSTM_EMODB" target="_blank" class="learn-more">🔗 GitHub Repository</a>
+    </div>
+  </div>
+</body>
+</html>

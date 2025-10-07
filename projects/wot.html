@@ -123,14 +123,21 @@
   .result-block.right .photo { order: 1; }
   .result-block.right .text { order: 2; }
   
-  /* ✅ 放大圖片 */
+ 
   .result-block img {
-    width: 100%;
-    max-width: 700px;  /* 原本 420px → 放大 */
-    border-radius: 12px;
-    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    width: 95%;
+    max-width: 950px;   /* 原本 700 → 放大 */
+    border-radius: 14px;
+    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
     transition: transform 0.4s ease, box-shadow 0.4s ease;
   }
+  
+  /* ✅ 讓圖片在桌面版能夠真正置中顯示 */
+  .photo {
+    flex: 1 1 100%;
+    text-align: center;
+  }
+
   
   .result-block img:hover {
     transform: scale(1.05);
@@ -141,11 +148,6 @@
   .result-block .text {
     flex: 1 1 25%;   /* 原本 45%，縮小文字範圍 */
     min-width: 280px;
-  }
-  
-  .photo {
-    flex: 1 1 65%;   /* 原本 45%，放大圖片比例 */
-    text-align: center;
   }
   
   /* ✅ 手機與平板 RWD：上下排列 */

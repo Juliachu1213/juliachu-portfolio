@@ -6,7 +6,7 @@
   <title>ArtChat | Julia Chu</title>
   <link rel="stylesheet" href="../style.css" />
   <style>
-    /* ✅ 影片容器樣式 */
+    /* 🎬 影片容器樣式 */
     .video-container {
       display: flex;
       justify-content: center;
@@ -16,7 +16,7 @@
     .video-container iframe {
       width: 80%;
       max-width: 900px;
-      height: 500px;
+      aspect-ratio: 16 / 9;
       border-radius: 15px;
       border: none;
       box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
@@ -28,7 +28,7 @@
       box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
     }
 
-    /* ✅ 結果圖排列 */
+    /* 🖼️ 結果圖排列 */
     .result-gallery {
       display: flex;
       flex-wrap: wrap;
@@ -77,15 +77,16 @@
       <span style="font-size:0.95rem;">(Fine-tuned Multimodal LLM for Art Interpretation)</span>
     </p>
 
-    <!-- ✅ 影片區 -->
+    <!-- 🎬 YouTube 影片 -->
     <div class="video-container">
-    <iframe 
-      src="https://www.youtube.com/embed/SJBTIOqL4Rg"
-      title="ArtChat Project Demo"
-      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen>
-    </iframe>
-  </div>
+      <iframe 
+        src="https://www.youtube.com/embed/SJBTIOqL4Rg"
+        title="ArtChat Project Demo"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+        allowfullscreen>
+      </iframe>
+    </div>
 
     <p><strong>Tech Stack:</strong> Python · PyTorch · Hugging Face Transformers · QLoRA · Qwen2-VL · BLIP-2 · Selenium · BERTScore · ROUGE-L</p>
 
@@ -118,8 +119,12 @@
       while smaller models generated longer but less factual outputs. 
       This aligns with quantitative findings and reinforces the impact of model scale on multimodal semantic understanding.
     </p>
-    <img src="../assets/art_result_metrics.jpg" alt="Comparison between Qwen2-VL-7B, Qwen2.5-VL-3B and Ground Truth responses."/ >
 
+    <!-- 🖼️ 結果圖 -->
+    <div class="result-gallery">
+      <img src="../assets/art_result_metrics.jpg" alt="Quantitative Results">
+      <img src="../assets/art_result_comparison.jpg" alt="Model Comparison Results">
+    </div>
 
     <h2>4. Conclusion & Future Work</h2>
     <p>
@@ -127,7 +132,6 @@
       Future directions include expanding the dataset, exploring partial backbone unfreezing for domain adaptation, 
       improving inference efficiency, and integrating multilingual TTS for real-world deployment in museums.
     </p>
-     <img src="../assets/art_result_comparison.jpg">
 
     <!-- ✅ 按鈕 -->
     <div style="text-align:center; margin-top:50px;">

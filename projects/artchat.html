@@ -78,13 +78,14 @@
     </p>
 
     <!-- ✅ 影片區 -->
-   <div class="video-container">
-    <video controls playsinline preload="metadata">
-      <source src="../assets/artchat_demo.mov" type="video/quicktime">
-      Your browser does not support the video tag.
-    </video>
+    <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/SJBTIOqL4Rg"
+      title="ArtChat Project Demo"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen>
+    </iframe>
   </div>
-
 
     <p><strong>Tech Stack:</strong> Python · PyTorch · Hugging Face Transformers · QLoRA · Qwen2-VL · BLIP-2 · Selenium · BERTScore · ROUGE-L</p>
 
@@ -117,13 +118,8 @@
       while smaller models generated longer but less factual outputs. 
       This aligns with quantitative findings and reinforces the impact of model scale on multimodal semantic understanding.
     </p>
+    <img src="../assets/art_result_metrics.jpg" >
 
-    <!-- ✅ 結果圖 -->
-    <div class="result-gallery">
-      <img src="../assets/art_result_metrics.jpg" alt="Quantitative Results" />
-      <img src="../assets/art_result_examples.jpg" alt="Qualitative Examples" />
-      <img src="../assets/art_result_comparison.jpg" alt="Comparison between Qwen2-VL-7B, Qwen2.5-VL-3B and Ground Truth responses" />
-    </div>
 
     <h2>4. Conclusion & Future Work</h2>
     <p>
@@ -131,6 +127,7 @@
       Future directions include expanding the dataset, exploring partial backbone unfreezing for domain adaptation, 
       improving inference efficiency, and integrating multilingual TTS for real-world deployment in museums.
     </p>
+     <img src="../assets/art_result_comparison.jpg">
 
     <!-- ✅ 按鈕 -->
     <div style="text-align:center; margin-top:50px;">

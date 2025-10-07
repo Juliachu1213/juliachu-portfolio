@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ArtChat | Julia Chu</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ✅ 影片容器樣式 */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin: 50px auto;
+    }
+
+    .video-container iframe {
+      width: 80%;
+      max-width: 900px;
+      height: 500px;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .video-container iframe:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+    }
+
+    /* ✅ 結果圖排列 */
+    .result-gallery {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 25px;
+      margin: 50px 0;
+    }
+
+    .result-gallery img {
+      width: 30%;
+      min-width: 280px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .result-gallery img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ 導覽列 -->
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html" style="border-bottom: 2px solid #3b3026;">Projects</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ✅ 內容 -->
+  <div class="project-detail">
+    <h1 style="text-align:center; font-family:'Playfair Display', serif; font-size:2.5rem; margin-bottom:10px;">
+      🖼️ ArtChat: An AI-Driven Conversational Agent for Art Appreciation
+    </h1>
+    <p style="text-align:center; font-style:italic; color:#6b5a4a; margin-bottom:40px;">
+      This report was prepared for COMP 646: Deep Learning for Vision and Language @ Rice University<br>
+      <span style="font-size:0.95rem;">(Fine-tuned Multimodal LLM for Art Interpretation)</span>
+    </p>
+
+    <!-- ✅ 影片區 -->
+   <div class="video-container">
+    <video controls playsinline preload="metadata">
+      <source src="../assets/artchat_demo.mov" type="video/quicktime">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+
+
+    <p><strong>Tech Stack:</strong> Python · PyTorch · Hugging Face Transformers · QLoRA · Qwen2-VL · BLIP-2 · Selenium · BERTScore · ROUGE-L</p>
+
+    <h2>1. Abstract</h2>
+    <p>
+      Traditional museum audio guides often provide static, one-way descriptions that overlook the context visitors seek. 
+      ArtChat is a single-turn vision–language assistant that answers open-ended questions about artworks exhibited at Taiwan’s National Palace Museum. 
+      By fine-tuning open-source vision–language models (Qwen2-VL-7B, Qwen2.5-VL-3B, BLIP-2 OPT-2.7B) using parameter-efficient QLoRA on only 1,000 curated image–question–answer pairs, 
+      the system delivers culturally informed, conversational guidance within a single NVIDIA A100 GPU environment.
+    </p>
+
+    <h2>2. Methodology</h2>
+    <ul>
+      <li><strong>Data Collection:</strong> Scraped metadata and artwork information from the National Palace Museum website using Selenium; generated QA pairs emphasizing cultural and historical context.</li>
+      <li><strong>Model Architecture:</strong> Fine-tuned three open VLMs (Qwen2-VL-7B, Qwen2.5-VL-3B, BLIP-2) via 4-bit quantization and LoRA adapters.</li>
+      <li><strong>Training Pipeline:</strong> Implemented with Hugging Face transformers, trl, and peft libraries; optimized with AdamW and mixed precision (bfloat16).</li>
+      <li><strong>Evaluation:</strong> Introduced a paraphrase benchmark with 200 rephrased test questions to test linguistic generalization within the art domain.</li>
+    </ul>
+
+    <h2>3. Results & Analysis</h2>
+    <p>
+      Quantitatively, the fine-tuned Qwen2-VL-7B achieved the highest scores among all models with 
+      <strong>BERTScore F1 = 0.544</strong> and <strong>ROUGE-L = 0.487</strong>. 
+      Qualitative analysis confirmed that larger models produced more accurate and contextually grounded answers, 
+      recovering artist, period, and stylistic details more reliably than smaller variants.
+    </p>
+    <p>
+      Human evaluations assessed accuracy, relevance, and fluency of responses. 
+      Results showed that Qwen2-VL-7B produced concise yet precise answers, 
+      while smaller models generated longer but less factual outputs. 
+      This aligns with quantitative findings and reinforces the impact of model scale on multimodal semantic understanding.
+    </p>
+
+    <!-- ✅ 結果圖 -->
+    <div class="result-gallery">
+      <img src="../assets/art_result_metrics.jpg" alt="Quantitative Results" />
+      <img src="../assets/art_result_examples.jpg" alt="Qualitative Examples" />
+      <img src="../assets/art_result_comparison.jpg" alt="Comparison between Qwen2-VL-7B, Qwen2.5-VL-3B and Ground Truth responses" />
+    </div>
+
+    <h2>4. Conclusion & Future Work</h2>
+    <p>
+      ArtChat demonstrates that low-cost adaptation of open-source vision–language models can deliver intelligent, culturally grounded museum guidance. 
+      Future directions include expanding the dataset, exploring partial backbone unfreezing for domain adaptation, 
+      improving inference efficiency, and integrating multilingual TTS for real-world deployment in museums.
+    </p>
+
+    <!-- ✅ 按鈕 -->
+    <div style="text-align:center; margin-top:50px;">
+      <a href="../projects.html" class="learn-more">← Back to Projects</a>
+      <a href="../assets/COMP646_ArtChat_Report.pdf" target="_blank" class="learn-more" style="margin-left:20px;">📄 View Full Report</a>
+    </div>
+  </div>
+</body>
+</html>

@@ -100,50 +100,67 @@
 
     ul { margin-left: 20px; }
 
-    /* === Result Blocks (Alternating Layout) === */
-    .result-section {
-      display: flex;
-      flex-direction: column;
-      gap: 50px;
-      margin-top: 40px;
-    }
-
+   /* === Result Blocks (Alternating Layout) === */
+  .result-section {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin-top: 40px;
+  }
+  
+  .result-block {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* 改成置中讓整體更平衡 */
+    flex-wrap: wrap;
+    gap: 30px;
+  }
+  
+  /* 左右交錯排列控制 */
+  .result-block.left .photo { order: 2; }
+  .result-block.left .text { order: 1; }
+  
+  .result-block.right .photo { order: 1; }
+  .result-block.right .text { order: 2; }
+  
+  /* ✅ 放大圖片 */
+  .result-block img {
+    width: 100%;
+    max-width: 700px;  /* 原本 420px → 放大 */
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+    transition: transform 0.4s ease, box-shadow 0.4s ease;
+  }
+  
+  .result-block img:hover {
+    transform: scale(1.05);
+    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+  }
+  
+  /* ✅ 縮小文字區域 */
+  .result-block .text {
+    flex: 1 1 35%;   /* 原本 45%，縮小文字範圍 */
+    min-width: 280px;
+  }
+  
+  .photo {
+    flex: 1 1 60%;   /* 原本 45%，放大圖片比例 */
+    text-align: center;
+  }
+  
+  /* ✅ 手機與平板 RWD：上下排列 */
+  @media (max-width: 900px) {
     .result-block {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      flex-wrap: wrap;
-      gap: 30px;
-    }
-
-    .result-block.left .photo { order: 2; }
-    .result-block.left .text { order: 1; }
-
-    .result-block.right .photo { order: 1; }
-    .result-block.right .text { order: 2; }
-
-    .result-block img {
-      width: 100%;
-      max-width: 420px;
-      border-radius: 12px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      transition: transform 0.4s ease, box-shadow 0.4s ease;
-    }
-
-    .result-block img:hover {
-      transform: scale(1.05);
-      box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
-    }
-
-    .result-block .text {
-      flex: 1 1 45%;
-      min-width: 300px;
-    }
-
-    .photo {
-      flex: 1 1 45%;
+      flex-direction: column;
       text-align: center;
     }
+    .photo, .result-block .text {
+      flex: 1 1 100%;
+    }
+    .result-block img {
+      max-width: 90%;
+    }
+  }
 
     /* === Buttons === */
     .buttons {

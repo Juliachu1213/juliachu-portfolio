@@ -264,6 +264,7 @@
       The first two weekends of May (May 2 and May 9) showed the highest peaks, while traffic gradually declined throughout the rest of the month.
     </p>
 
+        <!-- 單張圖 -->
     <div class="image-block">
       <figure>
         <img src="../assets/predicted_daily.jpg" alt="Predicted Daily Visitor Traffic (May 2021)">
@@ -273,20 +274,67 @@
       </figure>
     </div>
     
+    <!-- 雙圖並排 -->
     <div class="dual-image">
-      <figure style="text-align:center;">
+      <figure>
         <img src="../assets/avg_hourly.jpg" alt="Average People per Hour (May 2021)">
-        <figcaption style="margin-top:8px; font-style:italic; color:#5a4b3c;">
-          Average People per Hour (May 2021)
-        </figcaption>
+        <figcaption>Average People per Hour (May 2021)</figcaption>
       </figure>
-      <figure style="text-align:center;">
+      <figure>
         <img src="../assets/avg_weekly.jpg" alt="Average People per Week (May 2021)">
-        <figcaption style="margin-top:8px; font-style:italic; color:#5a4b3c;">
-          Average People per Week (May 2021)
-        </figcaption>
+        <figcaption>Average People per Week (May 2021)</figcaption>
       </figure>
     </div>
+    
+    <style>
+      /* 單張圖置中 */
+      .image-block {
+        text-align: center;
+        margin: 50px 0;
+      }
+    
+      .image-block img {
+        width: 80%;
+        max-width: 800px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      }
+    
+      /* ✅ 讓兩張圖並排 */
+      .dual-image {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start;
+        flex-wrap: wrap; /* 小螢幕自動換行 */
+        gap: 30px;
+        margin: 40px 0;
+      }
+    
+      .dual-image figure {
+        flex: 1 1 45%; /* 各佔約一半寬 */
+        text-align: center;
+      }
+    
+      .dual-image img {
+        width: 100%;
+        max-width: 420px;
+        border-radius: 12px;
+        box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+        transition: transform 0.4s ease, box-shadow 0.4s ease;
+      }
+    
+      .dual-image img:hover {
+        transform: scale(1.05);
+        box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+      }
+    
+      .dual-image figcaption {
+        margin-top: 10px;
+        font-style: italic;
+        color: #5a4b3c;
+      }
+    </style>
+
 
 
 

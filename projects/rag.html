@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Hotel Review Chatbot (RAG) | Julia Chu</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    /* ✅ 影片外框樣式 */
+    .video-container {
+      display: flex;
+      justify-content: center;
+      margin: 50px auto;
+    }
+
+    .video-container iframe {
+      width: 80%;
+      max-width: 900px;
+      height: 500px;
+      border-radius: 15px;
+      border: none;
+      box-shadow: 0 10px 35px rgba(0, 0, 0, 0.25);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
+    }
+
+    .video-container iframe:hover {
+      transform: scale(1.02);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
+    }
+  </style>
+</head>
+
+<body>
+  <!-- ✅ 導覽列 -->
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html" style="border-bottom: 2px solid #3b3026;">Projects</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ✅ 內容區 -->
+  <div class="project-detail">
+    <h1 style="text-align:center; font-family:'Playfair Display', serif; font-size:2.5rem; margin-bottom:10px;">
+      🏨 Retrieval-Augmented Generation for Airbnb-style Hotel Review Chatbot
+    </h1>
+    <p style="text-align:center; font-style:italic; color:#6b5a4a; margin-bottom:40px;">
+      Chu-Yun Chu, Wuchi Wang <br>
+      This report was prepared for COMP 631: Introduction to Information Retrieval @ Rice University
+    </p>
+
+    <!-- ✅ 影片內嵌 -->
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/watch?v=liKEdp_2Q6k" 
+        title="RAG Hotel Chatbot Demo" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+
+    <p><strong>Tech Stack:</strong> Python · SentenceTransformers · DeepSeek-Qwen-1.5B · BART · Gradio</p>
+
+    <h2>1. Introduction / Problem</h2>
+    <p>
+      The hospitality industry produces massive amounts of unstructured user reviews on sites like Booking.com and Airbnb. 
+      While these reviews contain valuable insights, the scale makes it difficult for travelers to find relevant information efficiently. 
+      To address this, we built an intelligent hotel review question-answering chatbot that retrieves and summarizes hotel reviews using 
+      the Retrieval-Augmented Generation (RAG) framework. The system matches a user’s natural-language query (e.g., 
+      “Which hotels are quiet and clean?”) with semantically similar hotel documents, then generates concise, context-aware recommendations.
+    </p>
+
+    <h2>2. Prior Work</h2>
+    <p>
+      We scraped and preprocessed over 200,000 English-language hotel reviews from Booking.com to create a structured corpus. 
+      Each hotel’s reviews were concatenated into a single document and embedded with SentenceTransformers 
+      (<code>stella_en_400M_v5</code>) for semantic retrieval in subsequent tasks.
+    </p>
+
+    <h2>3. Model / Method</h2>
+    <ul>
+      <li><strong>Corpus Preparation:</strong> Filtered reviews containing “liked” and organized them per hotel.</li>
+      <li><strong>Dense Retrieval:</strong> Encoded reviews and queries using <code>all-MiniLM-L6-v2</code> and computed cosine similarity to rank hotels.</li>
+      <li><strong>Prompt Construction:</strong> Summarized top-k documents via <code>facebook/bart-large-cnn</code> and inserted them into structured prompts.</li>
+      <li><strong>Generation:</strong> Adopted <code>DeepSeek-R1-Distill-Qwen-1.5B</code> for fluent, structured answers listing pros, cons, and verdicts.</li>
+      <li><strong>Interface:</strong> Deployed through Gradio for real-time Q&A interaction.</li>
+    </ul>
+
+    <h2>4. Results & Findings</h2>
+    <p>
+      The chatbot delivers concise, structured responses under 20 seconds end-to-end latency on CPU, 
+      demonstrating high semantic relevance with minimal hallucination. Qualitative evaluation confirmed 
+      accurate, well-organized results, though smaller LLMs struggled with vague queries and long-context reasoning.
+    </p>
+
+    <h2>5. Conclusion</h2>
+    <p>
+      This project demonstrates how RAG can bridge unstructured textual data and actionable insights 
+      for real-world travel decision support. Despite hardware limitations, the system effectively integrates 
+      retrieval, summarization, and generation to provide intelligent, trustworthy hotel recommendations.
+    </p>
+
+    <!-- ✅ 按鈕區 -->
+    <div style="text-align:center; margin-top:50px;">
+      <a href="../projects.html" class="learn-more">← Back to Projects</a>
+      <a href="../assets/COMP631_RAG_Report.pdf" download class="learn-more" style="margin-left:20px;">📄 Download Report</a>
+    </div>
+  </div>
+</body>
+</html>

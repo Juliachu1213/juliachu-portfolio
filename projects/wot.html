@@ -66,8 +66,9 @@
     <div class="result-section">
       <div class="result-block left">
         <div class="text">
-          <p><strong>To assess scalability, the experiment measured the average response time of the ACS when sending requests to varying numbers of CPEs (10–100 devices). 
-            Results show that the original CWMP architecture’s response time increased sharply—from about 5 ms at 10 CPEs to 75 ms at 100 CPEs—due to its SOAP-based, synchronous communication overhead. In contrast, the WoT-based CWMP system maintained a much lower latency, rising only to around 40 ms at 100 CPEs, demonstrating significantly better efficiency and scalability.</p>
+          <p><strong></strong>System Performance under Different CPE Loads</strong> </p>
+          <p>The test measured ACS response time with 10–100 CPEs. The original CWMP’s latency rose sharply from 5 ms to 75 ms due to SOAP overhead, while the WoT-based CWMP stayed around 40 ms at 100 CPEs, showing much better efficiency and scalability.
+</p>
         </div>
         <div class="photo">
           <img src="../assets/result_latency.jpg" alt="Latency Comparison" />
@@ -79,13 +80,15 @@
           <img src="../assets/result_stability.jpg" alt="System Stability" />
         </div>
         <div class="text">
-          <p><strong>Higher stability</strong> under 5,000+ concurrent requests through load testing.</p>
+          <p><strong>Data Traffic under Different DU Update Requests</strong></p>
+<p>As DU update requests increased from 10 to 100, the original CWMP’s data usage rose steeply from 6 KB to 60 KB, while the WoT-based CWMP grew more slowly—from 4 KB to 45 KB—cutting traffic by about 25% and improving efficiency in large-scale updates.</p>
         </div>
       </div>
 
       <div class="result-block left">
         <div class="text">
-          <p><strong>Improved maintainability</strong> and scalability from modular RESTful interfaces.</p>
+          <p><strong>Event Notification Latency under Different Subscriber–Publisher Ratios</strong></p>
+          <p>compares three event-notification mechanisms—CWMP Inform, Webhook, and WebSocket—using VALUE_CHANGE events to simulate IoT parameter updates. As the subscriber-to-publisher ratio increased from 1:1 to 1000:1, CWMP’s latency rose steeply from 100 ms to 350 ms due to SOAP overhead. Webhook performed better, reaching about 200 ms at 1000:1, cutting delay by over 40%. WebSocket consistently achieved the lowest latency—below 100 ms even under heavy load—thanks to its persistent connection design.</p>
         </div>
         <div class="photo">
           <img src="../assets/result_scalability.jpg" alt="Scalability Results" />

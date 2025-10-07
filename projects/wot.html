@@ -100,49 +100,87 @@
 
     ul { margin-left: 20px; }
 
-   /* === Result Blocks (Alternating Layout) === */
-  .result-section {
-    display: flex;
-    flex-direction: column;
-    gap: 50px;
-    margin-top: 40px;
-  }
-  
-  .result-block {
-    display: flex;
-    align-items: center;
-    justify-content: center; /* 改成置中讓整體更平衡 */
-    flex-wrap: wrap;
-    gap: 30px;
-  }
-  
-  /* 左右交錯排列控制 */
-  .result-block.left .photo { order: 2; }
-  .result-block.left .text { order: 1; }
-  
-  .result-block.right .photo { order: 1; }
-  .result-block.right .text { order: 2; }
-  
- 
-  .result-block img {
-    width: 95%;
-    max-width: 950px;   /* 原本 700 → 放大 */
-    border-radius: 14px;
-    box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
-    transition: transform 0.4s ease, box-shadow 0.4s ease;
-  }
-  
-  /* ✅ 讓圖片在桌面版能夠真正置中顯示 */
-  .photo {
-    flex: 1 1 100%;
-    text-align: center;
-  }
+  /* === Result Section 改成更大圖比例 === */
+.result-section {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  margin-top: 40px;
+}
 
-  
-  .result-block img:hover {
-    transform: scale(1.05);
-    box-shadow: 0 12px 35px rgba(0, 0, 0, 0.25);
+.result-block {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+  gap: 20px;
+}
+
+/* ✅ 放大圖片：接近整頁寬度 */
+.result-block img {
+  width: 95%;
+  max-width: 1000px;   /* 原本 700 → 放大到 1000 */
+  border-radius: 14px;
+  box-shadow: 0 10px 35px rgba(0, 0, 0, 0.15);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+.result-block img:hover {
+  transform: scale(1.04);
+  box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+}
+
+.result-block .text {
+  max-width: 900px;
+  font-size: 1rem;
+  line-height: 1.7;
+}
+
+/* ✅ 讓兩張圖能並排（像妳的範例） */
+.result-pair {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  gap: 40px;
+  margin-top: 40px;
+}
+
+.result-pair figure {
+  flex: 1 1 45%;
+  text-align: center;
+}
+
+.result-pair img {
+  width: 100%;
+  max-width: 600px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15);
+  transition: transform 0.4s ease;
+}
+
+.result-pair img:hover {
+  transform: scale(1.05);
+}
+
+.result-pair figcaption {
+  margin-top: 10px;
+  font-style: italic;
+  color: #4a4032;
+  font-size: 0.95rem;
+}
+
+/* ✅ 手機版：上下排列 */
+@media (max-width: 900px) {
+  .result-pair {
+    flex-direction: column;
+    gap: 25px;
   }
+  .result-pair img {
+    max-width: 90%;
+  }
+}
+
   
   /* ✅ 縮小文字區域 */
   .result-block .text {
@@ -240,49 +278,41 @@
     </ul>
 
     <h2>Experiment & Results</h2>
-    <div class="result-section">
-      <div class="result-block left">
-        <div class="text">
-          <p><strong>System Performance under Different CPE Loads</strong></p>
-          <p>
-            The test measured ACS response time with 10–100 CPEs. The original CWMP’s latency rose sharply 
-            from 5 ms to 75 ms due to SOAP overhead, while the WoT-based CWMP stayed around 40 ms at 100 CPEs, 
-            showing much better efficiency and scalability.
-          </p>
-        </div>
-        <div class="photo">
-          <img src="../assets/result_latency.jpg" alt="Latency Comparison">
-        </div>
+    
+    <!-- 第一組：CPE + DU Update (並排顯示) -->
+    <div class="result-pair">
+      <figure>
+        <img src="../assets/result_latency.jpg" alt="Latency Comparison">
+        <figcaption><strong>System Performance under Different CPE Loads</strong><br>
+        The test measured ACS response time with 10–100 CPEs. CWMP’s latency rose sharply 
+        from 5 ms to 75 ms due to SOAP overhead, while the WoT-based CWMP stayed around 40 ms 
+        at 100 CPEs, showing much better efficiency and scalability.</figcaption>
+      </figure>
+    
+      <figure>
+        <img src="../assets/result_stability.jpg" alt="Data Traffic Comparison">
+        <figcaption><strong>Data Traffic under Different DU Update Requests</strong><br>
+        As DU update requests increased from 10 to 100, CWMP’s data usage rose steeply 
+        from 6 KB to 60 KB, while the WoT-based CWMP grew more slowly—from 4 KB to 45 KB—cutting 
+        traffic by 25% and improving efficiency in large-scale updates.</figcaption>
+      </figure>
+    </div>
+    
+    <!-- 第二組：Event Notification (單張大圖) -->
+    <div class="result-block">
+      <div class="text">
+        <p><strong>Event Notification Latency under Different Subscriber–Publisher Ratios</strong></p>
+        <p>
+          Compares three event-notification mechanisms—CWMP Inform, Webhook, and WebSocket—using 
+          VALUE_CHANGE events to simulate IoT parameter updates. As the subscriber-to-publisher ratio 
+          increased from 1:1 to 1000:1, CWMP’s latency rose steeply from 100 ms to 350 ms due to SOAP 
+          overhead. Webhook performed better, reaching 200 ms at 1000:1 (cutting delay > 40%). 
+          WebSocket achieved the lowest latency—below 100 ms even under heavy load—thanks to its 
+          persistent connection design.
+        </p>
       </div>
-
-      <div class="result-block right">
-        <div class="photo">
-          <img src="../assets/result_stability.jpg" alt="System Stability">
-        </div>
-        <div class="text">
-          <p><strong>Data Traffic under Different DU Update Requests</strong></p>
-          <p>
-            As DU update requests increased from 10 to 100, the original CWMP’s data usage rose steeply from 6 KB to 60 KB,
-            while the WoT-based CWMP grew more slowly—from 4 KB to 45 KB—cutting traffic by about 25% and improving efficiency 
-            in large-scale updates.
-          </p>
-        </div>
-      </div>
-
-      <div class="result-block left">
-        <div class="text">
-          <p><strong>Event Notification Latency under Different Subscriber–Publisher Ratios</strong></p>
-          <p>
-            Compares three event-notification mechanisms—CWMP Inform, Webhook, and WebSocket—using VALUE_CHANGE events to 
-            simulate IoT parameter updates. As the subscriber-to-publisher ratio increased from 1:1 to 1000:1, CWMP’s latency 
-            rose steeply from 100 ms to 350 ms due to SOAP overhead. Webhook performed better, reaching about 200 ms at 1000:1, 
-            cutting delay by over 40%. WebSocket consistently achieved the lowest latency—below 100 ms even under heavy load—thanks 
-            to its persistent connection design.
-          </p>
-        </div>
-        <div class="photo">
-          <img src="../assets/result_scalability.jpg" alt="Scalability Results">
-        </div>
+      <div class="photo">
+        <img src="../assets/result_scalability.jpg" alt="Event Notification Performance">
       </div>
     </div>
 

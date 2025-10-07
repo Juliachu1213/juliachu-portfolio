@@ -230,10 +230,12 @@
     </ul>
 
     <h2>4. Results — Example: National Center for Traditional Arts</h2>
-    <p>
-      Three non-temporal models and two temporal models were evaluated to predict hourly visitor flow.
-      Random Forest achieved the best performance among non-temporal models, while XGBoost outperformed all models overall.
-    </p>
+    <h4 style="color:#555;">(a) Non-Temporal Models</h4>
+  <p>
+    The <strong>Random Forest Regressor</strong> achieved the best performance among non-temporal models,
+    though overall error values remained high. In this location, 
+    all three non-temporal methods were less suitable for fine-grained hourly prediction.
+  </p>
 
     <table>
       <thead>
@@ -252,6 +254,20 @@
         <tr><td>Linear Regression</td><td>630.93</td><td>25.11</td><td>18.18</td><td>24.75%</td><td>0.84</td></tr>
       </tbody>
     </table>
+
+    <h4 style="color:#555;">(b) Temporal Models</h4>
+    <p>
+      The <strong>LSTM</strong> model showed moderate improvement with a window size of up to four hours before overfitting occurred.
+      However, the <strong>XGBoost</strong> model demonstrated superior performance, achieving convergence at around
+      <strong>10-hour lookback</strong> and reaching the best overall accuracy with <strong>MSE = 183.37</strong> and <strong>R² = 0.95</strong>.
+    </p>
+  
+    <p style="margin-top:1rem;">
+      These results confirm that <strong>XGBoost</strong> outperforms other models in both accuracy and stability, 
+      capturing short-term visitor fluctuations more effectively.
+    </p>
+  </section>
+    
 
     <div class="dual-image">
       <img src="../assets/lstm_performance.jpg" alt="LSTM Model Performance">

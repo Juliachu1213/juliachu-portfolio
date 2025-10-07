@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Traffic Flow Prediction | Julia Chu</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: #2d261f;
+      background: linear-gradient(135deg, #f7f1e9, #e9dfd1, #f4eadd);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #3b3026;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3b3026;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover { color: #a17f45; }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #3b3026;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    .project-detail {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #3b3026;
+      border-left: 4px solid #a17f45;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 6px;
+      text-align: center;
+    }
+
+    thead { background-color: #f4f6f8; }
+
+    .image-block {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .image-block img {
+      width: 85%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-block img:hover { transform: scale(1.03); }
+
+    /* 雙圖區塊 */
+    .dual-image {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin: 30px 0;
+    }
+
+    .dual-image img {
+      width: 45%;
+      min-width: 280px;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .dual-image img:hover { transform: scale(1.05); }
+
+    .buttons {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .learn-more {
+      display: inline-block;
+      background-color: #2d261f;
+      color: white;
+      padding: 12px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .learn-more:hover {
+      background-color: #a17f45;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html" style="border-bottom: 2px solid #3b3026;">Projects</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="project-detail">
+    <h1>🚗 Machine Learning-Based Traffic Flow Prediction for Strategic Tourism Planning</h1>
+    <p style="text-align:center; font-style:italic; color:#6b5a4a;">
+      Chu-Yun Chu<br>
+      Undergraduate Research Project funded by the National Science and Technology Council (NSTC), Taiwan<br>
+      <strong>Project ID:</strong> 110-2813-C-031-016-H
+    </p>
+
+    <h2>1. Introduction</h2>
+    <p>
+      In recent years, the concept of reverse marketing has gained increasing popularity among enterprises. 
+      Unlike traditional marketing that persuades consumers to purchase products, reverse marketing focuses on attracting customers 
+      through the intrinsic characteristics and value of products. This study applies the idea of reverse marketing to the tourism industry in Yilan, Taiwan — 
+      a region famous for its natural scenery yet suffering from strong seasonal fluctuations in tourist volume.
+    </p>
+    <p>
+      During holidays, heavy traffic on National Highway No. 5 leads to congestion, while off-peak seasons cause local businesses to face drastically reduced customer flow. 
+      To address this imbalance, this research predicts hourly visitor distributions at major tourist attractions by integrating traffic, weather, social media, and search engine data. 
+      The predictions support data-driven reverse marketing strategies that help businesses plan promotions and manage seasonal demand more effectively.
+    </p>
+
+    <h2>2. Prior Work</h2>
+    <ul>
+      <li><strong>Reverse Marketing:</strong> Value-driven approaches (e.g., Shopee, Nike, Philippines Tourism Board) emphasize brand authenticity and user engagement.</li>
+      <li><strong>Traffic Flow Prediction:</strong> Machine learning and deep learning models (Random Forest, SVR, LSTM, XGBoost) outperform traditional methods (ARIMA, Kalman Filter).</li>
+      <li><strong>Social Media and Search Data:</strong> Instagram hashtags and Google Trends provide real-time signals for predicting tourism dynamics.</li>
+    </ul>
+
+    <h2>3. Methodology</h2>
+    <p>
+      The study analyzed data from January 2019 to December 2020 to forecast tourist flow from March to May 2021. 
+      The integrated dataset contained 8,784 records with 12 features and one target variable, combining traffic, weather, 
+      social media, and search data.
+    </p>
+    <ul>
+      <li><strong>Traffic:</strong> Real-time highway data aggregated hourly.</li>
+      <li><strong>Tourist Statistics:</strong> Visitor counts from 19 attractions, focusing on five key sites.</li>
+      <li><strong>Weather:</strong> Hourly temperature, humidity, wind, and precipitation.</li>
+      <li><strong>Social & Search:</strong> Instagram (Instaloader) + Google Trends (Pytrends).</li>
+      <li><strong>Models:</strong> Random Forest, SVR, Linear Regression, LSTM, XGBoost (with MSE, RMSE, MAE, MAPE, R² metrics).</li>
+    </ul>
+
+    <h2>4. Results — Example: National Center for Traditional Arts</h2>
+    <p>
+      Three non-temporal models and two temporal models were evaluated to predict hourly visitor flow.
+      Random Forest achieved the best performance among non-temporal models, while XGBoost outperformed all models overall.
+    </p>
+
+    <table>
+      <thead>
+        <tr>
+          <th>Model</th>
+          <th>MSE</th>
+          <th>RMSE</th>
+          <th>MAE</th>
+          <th>MAPE</th>
+          <th>R²</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Random Forest</td><td>247.87</td><td>15.74</td><td>10.53</td><td>12.53%</td><td>0.93</td></tr>
+        <tr><td>SVR</td><td>407.56</td><td>20.18</td><td>12.74</td><td>17.49%</td><td>0.93</td></tr>
+        <tr><td>Linear Regression</td><td>630.93</td><td>25.11</td><td>18.18</td><td>24.75%</td><td>0.84</td></tr>
+      </tbody>
+    </table>
+
+    <div class="dual-image">
+      <img src="../assets/lstm_performance.jpg" alt="LSTM Model Performance">
+      <img src="../assets/xgboost_performance.jpg" alt="XGBoost Model Performance">
+    </div>
+
+    <h2>5. Prediction Results — National Center for Traditional Arts (May 2021)</h2>
+    <p>
+      Using the XGBoost model, the predicted total number of visitors for May 2021 was approximately <strong>44,102</strong>, representing a decrease of about 3,000 compared to April.
+      The first two weekends of May (May 2 and May 9) showed the highest peaks, while traffic gradually declined throughout the rest of the month.
+    </p>
+
+    <div class="image-block">
+      <img src="../assets/predicted_daily.jpg" alt="Predicted Daily Visitor Traffic (May 2021)">
+    </div>
+
+    <div class="dual-image">
+      <img src="../assets/avg_hourly.jpg" alt="Average People per Hour (May 2021)">
+      <img src="../assets/avg_weekly.jpg" alt="Average People per Week (May 2021)">
+    </div>
+
+    <p>
+      Visitor peaks occurred between <strong>2 PM and 4 PM</strong>, while weekly averages remained steady at around 800 visitors per day.  
+      These predictive insights support reverse marketing strategies — encouraging businesses to promote special offers or cultural events 
+      during off-peak periods to enhance visitor engagement and economic sustainability.
+    </p>
+
+    <div class="buttons">
+      <a href="../projects.html" class="learn-more">← Back to Projects</a>
+      <a href="https://github.com/YourGitHub/TrafficFlowPrediction" target="_blank" class="learn-more">🔗 GitHub Repository</a>
+    </div>
+  </div>
+</body>
+</html>

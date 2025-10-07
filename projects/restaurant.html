@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>EGo Book | Julia Chu</title>
+  <link rel="stylesheet" href="../style.css" />
+  <style>
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: #2d261f;
+      background: linear-gradient(135deg, #f7f1e9, #e9dfd1, #f4eadd);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    /* Header */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #3b3026;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3b3026;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover {
+      color: #a17f45;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #3b3026;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after {
+      width: 100%;
+    }
+
+    /* Content */
+    .project-detail {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1.2s ease forwards;
+    }
+
+    h1 {
+      text-align: center;
+      font-family: "Playfair Display", serif;
+      font-size: 2.3rem;
+      margin-bottom: 10px;
+    }
+
+    h2 {
+      color: #3b3026;
+      border-left: 4px solid #a17f45;
+      padding-left: 10px;
+      margin-top: 40px;
+    }
+
+    p, li {
+      line-height: 1.7;
+      font-size: 1rem;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 1.5rem 0;
+      font-size: 0.95rem;
+    }
+
+    th, td {
+      border: 1px solid #ccc;
+      padding: 8px;
+    }
+
+    thead {
+      background-color: #f4f6f8;
+    }
+
+    .image-block {
+      text-align: center;
+      margin: 30px 0;
+    }
+
+    .image-block img {
+      width: 85%;
+      max-width: 700px;
+      border-radius: 10px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      transition: transform 0.3s ease;
+    }
+
+    .image-block img:hover {
+      transform: scale(1.03);
+    }
+
+    .buttons {
+      text-align: center;
+      margin-top: 50px;
+    }
+
+    .learn-more {
+      display: inline-block;
+      background-color: #2d261f;
+      color: white;
+      padding: 12px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      margin: 10px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .learn-more:hover {
+      background-color: #a17f45;
+      transform: scale(1.05);
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(40px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="../index.html">Home</a></li>
+        <li><a href="../about.html">About</a></li>
+        <li><a href="../projects.html" style="border-bottom: 2px solid #3b3026;">Projects</a></li>
+        <li><a href="../tools.html">Tools</a></li>
+        <li><a href="../contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <div class="project-detail">
+    <h1>🍽️ EGo Book: Restaurant Reservation and Membership Management Platform</h1>
+    <p style="text-align:center; font-style:italic; color:#6b5a4a;">
+      Undergraduate Database Systems Project<br>
+      <strong>Technologies:</strong> FastAPI (Python) · MySQL · HTML · CSS · JavaScript
+    </p>
+
+    <h2>1. Introduction</h2>
+    <p>
+      The EGo Book system was designed as an integrated restaurant management and customer membership platform. 
+      It allows consumers to make online reservations, manage their booking history, and accumulate loyalty points through repeat visits. 
+      Restaurants, on the other hand, can register their businesses, manage seating arrangements, track reservation histories, 
+      and maintain blacklists for no-show customers.
+    </p>
+    <p>
+      The goal of this project was to develop a scalable and efficient relational database system that supports dynamic restaurant registration, 
+      automated seat allocation, membership rewards, and consumer analytics — providing both customers and restaurants with a unified digital service.
+    </p>
+
+    <h2>2. System Requirements</h2>
+    <p>
+      The system fulfills the four fundamental database operations: Create, Read, Update, and Delete (CRUD), supporting two primary user roles:
+    </p>
+    <ul>
+      <li><strong>Customer functions:</strong> Register and edit member profile, create or cancel reservations, check available tables, review booking history, and view reward points.</li>
+      <li><strong>Restaurant functions:</strong> Register restaurants, manage reservations and blacklists, update seat availability, and record customer spending.</li>
+    </ul>
+
+    <h2>3. Entity–Relationship (ER) Model</h2>
+    <table>
+      <thead>
+        <tr>
+          <th>Entity</th>
+          <th>Attributes</th>
+          <th>Relationships</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Restaurant</td>
+          <td>RestaurantID, Name, Address, Phone, Account, Password, Photo</td>
+          <td>Has multiple Tables, Reservations</td>
+        </tr>
+        <tr>
+          <td>Seat</td>
+          <td>SeatID, Availability, Capacity</td>
+          <td>Belongs to one Restaurant</td>
+        </tr>
+        <tr>
+          <td>Reservation</td>
+          <td>ReservationID, UserID, RestaurantID, DateTime, PartySize, Purpose</td>
+          <td>Created by one User for one Restaurant</td>
+        </tr>
+        <tr>
+          <td>User</td>
+          <td>UserID, Name, Gender, Phone, Birthday, Password, Level, Points, TotalSpending</td>
+          <td>Can make multiple Reservations, BlacklistRecords</td>
+        </tr>
+        <tr>
+          <td>Blacklist</td>
+          <td>BlacklistID, UserID, NoShowCount</td>
+          <td>Linked to User</td>
+        </tr>
+        <tr>
+          <td>SpendingRecord</td>
+          <td>RecordID, Time, Amount, PointsChanged</td>
+          <td>Belongs to one User</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div class="image-block">
+      <img src="../assets/restaurant_er.jpg" alt="EGo Book ER Model">
+    </div>
+
+    <h2>4. System Architecture</h2>
+    <p>
+      The system follows a three-tier architecture with clearly separated layers:
+    </p>
+    <ul>
+      <li><strong>Frontend:</strong> HTML, CSS, JavaScript — responsible for the user interface and dynamic content rendering.</li>
+      <li><strong>Backend:</strong> Python FastAPI — handles API endpoints, authentication, and business logic.</li>
+      <li><strong>Database:</strong> MySQL — stores structured data for restaurants, users, reservations, and loyalty programs.</li>
+    </ul>
+
+    <div class="image-block">
+      <img src="../assets/restaurant_architecture.jpg" alt="System Architecture Diagram">
+    </div>
+
+    <h2>5. Implementation & Key Features</h2>
+    <ul>
+      <li><strong>Membership system:</strong> Tracks user spending and updates loyalty points automatically after each completed reservation.</li>
+      <li><strong>Automated seat allocation:</strong> Seats are dynamically assigned based on table availability and party size.</li>
+      <li><strong>Blacklist management:</strong> Customers with repeated no-shows are automatically flagged and restricted from future bookings.</li>
+      <li><strong>Data integrity:</strong> All CRUD operations are transaction-safe using MySQL’s ACID compliance.</li>
+    </ul>
+
+    <h2>6. Future Work</h2>
+    <ul>
+      <li>Integrating machine learning models to predict peak booking times and recommend promotional strategies.</li>
+      <li>Implementing role-based access control (RBAC) for finer-grained permissions between customers and restaurant managers.</li>
+      <li>Adding RESTful APIs for mobile app integration and cross-platform synchronization.</li>
+    </ul>
+
+    <h2>7. Summary</h2>
+    <p>
+      The EGo Book project demonstrates the design of a fully functional restaurant reservation and membership management platform, integrating front-end interfaces, RESTful API services, and relational database management. 
+      Through structured schema design and modular development, the system successfully meets both customer convenience and restaurant operational needs.
+    </p>
+
+    <p>
+      This project is part of a university database systems course, developed primarily in Traditional Chinese as the course was conducted in Chinese. 
+      The user interface, documentation, and database schema therefore use Chinese labels, while the system logic and backend follow standard English-based programming conventions.
+    </p>
+
+    <div class="buttons">
+      <a href="../projects.html" class="learn-more">← Back to Projects</a>
+      <a href="https://github.com/Juliachu1213/EasyBook" target="_blank" class="learn-more">🔗 GitHub Repository</a>
+    </div>
+  </div>
+</body>
+</html>

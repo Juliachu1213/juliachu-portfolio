@@ -590,3 +590,19 @@ nav a:hover {
   transform: scale(1.02);
   box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3);
 }
+
+.dual-image {
+  display: flex;
+  justify-content: center;
+  gap: 20px; /* 圖片間距 */
+}
+
+.dual-image figure {
+  text-align: center;
+}
+
+.dual-image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+}

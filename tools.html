@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tools | Julia Chu</title>
+  <link rel="stylesheet" href="style.css" />
+  <style>
+    /* === 背景與共用風格 === */
+    body {
+      margin: 0;
+      font-family: "Open Sans", sans-serif;
+      color: #2d261f;
+      background: linear-gradient(135deg, #f7f1e9, #e9dfd1, #f4eadd);
+      background-size: 200% 200%;
+      animation: gradientShift 10s ease infinite;
+    }
+
+    @keyframes gradientShift {
+      0% { background-position: 0% 50%; }
+      50% { background-position: 100% 50%; }
+      100% { background-position: 0% 50%; }
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      background: rgba(255, 255, 255, 0.4);
+      backdrop-filter: blur(10px);
+    }
+
+    header h1 {
+      font-family: "Playfair Display", serif;
+      font-size: 1.5rem;
+      color: #3b3026;
+    }
+
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 30px;
+      margin: 0;
+      padding: 0;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #3b3026;
+      font-weight: 500;
+      position: relative;
+    }
+
+    nav a:hover { color: #a17f45; }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      bottom: -4px;
+      left: 0;
+      width: 0%;
+      height: 2px;
+      background-color: #3b3026;
+      transition: width 0.3s ease;
+    }
+
+    nav a:hover::after { width: 100%; }
+
+    /* === 標題動畫 === */
+    .title-wrapper {
+      display: flex;
+      justify-content: center;
+      margin: 80px 0 40px;
+    }
+
+    .title-svg {
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .title-text {
+      font-family: "Playfair Display", serif;
+      font-size: 42px;
+      fill: #3b3026;
+    }
+
+    .title-ring {
+      fill: none;
+      stroke: #3b3026;
+      stroke-width: 4;
+      stroke-dasharray: 800;
+      stroke-dashoffset: 800;
+      animation: drawRing 2s ease forwards;
+      transform-origin: center;
+    }
+
+    @keyframes drawRing {
+      0% {
+        stroke-dashoffset: 800;
+        transform: rotate(-5deg) scale(1);
+      }
+      70% {
+        stroke-dashoffset: 0;
+        transform: rotate(1deg) scale(1.02);
+      }
+      100% {
+        stroke-dashoffset: 0;
+        transform: rotate(0deg) scale(1);
+      }
+    }
+
+    /* === 技能主體卡片 === */
+    .skills-section {
+      max-width: 1000px;
+      margin: 60px auto;
+      padding: 40px;
+      background: rgba(255, 255, 255, 0.65);
+      border-radius: 15px;
+      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+      animation: fadeInUp 1s ease forwards;
+    }
+
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    .skills-section h3 {
+      color: #3b3026;
+      font-weight: 600;
+      margin: 50px 0 20px;
+      font-size: 1.1rem;
+      letter-spacing: 1.5px;
+      border-left: 4px solid #a17f45;
+      padding-left: 10px;
+    }
+
+    /* === 技能格線 === */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+      gap: 25px;
+    }
+
+    .skill-item {
+      background: #141414;
+      border-radius: 14px;
+      padding: 20px 10px;
+      text-align: center;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover {
+      transform: scale(1.08);
+      box-shadow: 0 0 14px rgba(56, 189, 248, 0.45);
+    }
+
+    .skill-item img {
+      width: 44px;
+      height: 44px;
+      object-fit: contain;
+      margin-bottom: 10px;
+      transition: all 0.3s ease;
+    }
+
+    .skill-item:hover img {
+      filter: drop-shadow(0 0 6px #38bdf8);
+    }
+
+    .skill-item span {
+      display: block;
+      font-size: 14px;
+      color: #e5e7eb;
+    }
+
+    /* === 底部按鈕 === */
+    .back-btn {
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    .learn-more {
+      display: inline-block;
+      background-color: #2d261f;
+      color: white;
+      padding: 12px 40px;
+      text-decoration: none;
+      border-radius: 50px;
+      transition: background-color 0.3s ease, transform 0.3s ease;
+    }
+
+    .learn-more:hover {
+      background-color: #a17f45;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <h1>Julia's Personal Website</h1>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="projects.html">Projects</a></li>
+        <li><a href="tools.html" style="border-bottom: 2px solid #3b3026;">Tools</a></li>
+        <li><a href="contact.html">Contact</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- === Animated Title === -->
+  <div class="title-wrapper">
+    <svg viewBox="0 0 600 120" class="title-svg">
+      <text x="50%" y="60%" text-anchor="middle" class="title-text">⚙️ Technical Stack</text>
+      <ellipse cx="300" cy="60" rx="210" ry="40" class="title-ring" />
+    </svg>
+  </div>
+
+  <!-- === Skills Section === -->
+  <section class="skills-section">
+    <h3>PROGRAMMING & FRAMEWORKS</h3>
+    <div class="skills-grid">
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/python/python-original.svg"><span>Python</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/java/java-original.svg"><span>Java</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/spring/spring-original.svg"><span>Spring Boot</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/django/django-plain.svg"><span>Django</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/fastapi/fastapi-original.svg"><span>FastAPI</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/r/r-original.svg"><span>R</span></div>
+    </div>
+
+    <h3>CLOUD & DEVOPS</h3>
+    <div class="skills-grid">
+      <div class="skill-item">
+        <img src="https://thequantuminsider.com/wp-content/uploads/2020/08/aws-logo.png"
+             style="width:60px; height:60px; object-fit:contain;">
+        <span>AWS</span>
+      </div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg"><span>Docker</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/kubernetes/kubernetes-plain.svg"><span>Kubernetes</span></div>
+      <div class="skill-item"><img src="https://upload.wikimedia.org/wikipedia/commons/d/de/AirflowLogo.png"><span>Apache Airflow</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg"><span>Git / CI/CD</span></div>
+    </div>
+
+    <h3>DATA & AI</h3>
+    <div class="skills-grid">
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg"><span>MySQL</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg"><span>PostgreSQL</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/hadoop/hadoop-original.svg"><span>Hadoop</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/tensorflow/tensorflow-original.svg"><span>TensorFlow</span></div>
+      <div class="skill-item"><img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/pytorch/pytorch-original.svg"><span>PyTorch</span></div>
+      <div class="skill-item"><img src="https://huggingface.co/front/assets/huggingface_logo-noborder.svg"><span>Hugging Face</span></div>
+      <div class="skill-item"><img src="https://media.licdn.com/dms/image/v2/D4D12AQFtt35locc2-g/article-cover_image-shrink_720_1280/article-cover_image-shrink_720_1280/0/1679145022415?e=1762387200&v=beta&t=0UkOVJ1sf4cUOOL_qQ7b8tjRdqsG6eeEdpzX1So022o" style="width:60px; height:60px; object-fit:contain;"><span>Tableau</span></div>
+      <div class="skill-item"><img src="https://upload.wikimedia.org/wikipedia/commons/c/cf/New_Power_BI_Logo.svg"><span>Power BI</span></div>
+    </div>
+
+    <h3>TESTING & AUTOMATION</h3>
+    <div class="skills-grid">
+      <div class="skill-item"><span>JUnit</span></div>
+      <div class="skill-item"><span>Mockito</span></div>
+      <div class="skill-item"><span>TestNG</span></div>
+      <div class="skill-item"><span>pytest</span></div>
+      <div class="skill-item"><span>Selenium</span></div>
+      <div class="skill-item"><span>JMeter</span></div>
+      <div class="skill-item"><span>K6</span></div>
+    </div>
+  </section>
+
+  <div class="back-btn">
+    <a href="index.html" class="learn-more">← Back to Home</a>
+  </div>
+</body>
+</html>

@@ -110,40 +110,73 @@
 
     thead { background-color: #f4f6f8; }
 
+        /* 單張圖置中 */
     .image-block {
       text-align: center;
-      margin: 30px 0;
+      margin: 60px 0;
     }
-
+    
     .image-block img {
-      width: 85%;
-      max-width: 700px;
-      border-radius: 10px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
+      width: 90%;
+      max-width: 900px;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
-    .image-block img:hover { transform: scale(1.03); }
-
-    /* 雙圖區塊 */
+    
+    .image-block img:hover {
+      transform: scale(1.03);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.25);
+    }
+    
+    /* 讓兩張圖穩定並排 */
     .dual-image {
       display: flex;
       justify-content: center;
-      align-items: center;
-      gap: 20px;
+      align-items: flex-start;
+      gap: 40px;
       flex-wrap: wrap;
-      margin: 30px 0;
+      margin: 50px 0;
     }
-
+    
+    .dual-image figure {
+      flex: 1 1 45%;
+      max-width: 480px;
+      text-align: center;
+    }
+    
     .dual-image img {
-      width: 45%;
-      min-width: 280px;
-      border-radius: 10px;
-      box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
-      transition: transform 0.3s ease;
+      width: 100%;
+      height: auto;
+      border-radius: 14px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.18);
+      transition: transform 0.4s ease, box-shadow 0.4s ease;
     }
-
-    .dual-image img:hover { transform: scale(1.05); }
+    
+    .dual-image img:hover {
+      transform: scale(1.05);
+      box-shadow: 0 15px 45px rgba(0, 0, 0, 0.25);
+    }
+    
+    .dual-image figcaption {
+      margin-top: 12px;
+      font-size: 0.95rem;
+      font-style: italic;
+      color: #4a4032;
+      line-height: 1.4;
+    }
+    
+    /* ✅ RWD */
+    @media (max-width: 900px) {
+      .dual-image {
+        flex-direction: column;
+        gap: 25px;
+      }
+    
+      .dual-image figure {
+        max-width: 90%;
+      }
+    }
 
     .buttons {
       text-align: center;
@@ -270,9 +303,16 @@
     
 
     <div class="dual-image">
-      <img src="../assets/lstm_performance.jpg" alt="LSTM Model Performance">
-      <img src="../assets/xgboost_performance.jpg" alt="XGBoost Model Performance">
+      <figure>
+        <img src="../assets/lstm_performance.jpg" alt="LSTM Model Performance">
+        <figcaption>LSTM Model Performance</figcaption>
+      </figure>
+      <figure>
+        <img src="../assets/xgboost_performance.jpg" alt="XGBoost Model Performance">
+        <figcaption>XGBoost Model Performance</figcaption>
+      </figure>
     </div>
+
 
     <h2>5. Prediction Results — National Center for Traditional Arts (May 2021)</h2>
     <p>
